@@ -536,7 +536,7 @@
         <li><a href="#tests">Test Report</a></li>
         <li><a href="#coverage">Coverage Report</a></li>
         <li class="">
-            <span class="cov high">100</span>
+            <span class="cov high">98.39</span>
             <a href="#handlers.js"><span class="basename">handlers.js</span></a>
         </li>
         <li class="">
@@ -551,6 +551,10 @@
             <span class="cov high">100</span>
             <a href="#server.js"><span class="basename">server.js</span></a>
         </li>
+        <li class="">
+            <span class="cov high">100</span>
+            <a href="#users.js"><span class="basename">users.js</span></a>
+        </li>
         <li><a href="#linting">Linting Report</a></li>
     </div>
     <div id="tests">
@@ -558,8 +562,8 @@
       <div class="stats high">
           <div class="failures">0</div>
           <div class="skipped">0</div>
-          <div class="test-count">4</div>
-          <div class="duration">463</div>
+          <div class="test-count">23</div>
+          <div class="duration">1466</div>
       </div>
       <div id="filters">
           <input type="checkbox" checked="" onchange="filter(this)" value="success" id="show-success">
@@ -573,6 +577,12 @@
           <label for="show-users_module">users module</label>
           <input type="checkbox" checked="" onchange="filter(this)" value="GET_/users" id="show-GET_/users">
           <label for="show-GET_/users">GET /users</label>
+          <input type="checkbox" checked="" onchange="filter(this)" value="GET_/users/{userID}" id="show-GET_/users/{userID}">
+          <label for="show-GET_/users/{userID}">GET /users/{userID}</label>
+          <input type="checkbox" checked="" onchange="filter(this)" value="POST_/users" id="show-POST_/users">
+          <label for="show-POST_/users">POST /users</label>
+          <input type="checkbox" checked="" onchange="filter(this)" value="UsersUtils" id="show-UsersUtils">
+          <label for="show-UsersUtils">UsersUtils</label>
       </div>
       <table>
           <thead>
@@ -588,28 +598,161 @@
               <td class="test-title">General tests server should respont with 200 OK and test text message on GET request to defautl route
                   
               </td>
-              <td class="test-duration">288</td>
+              <td class="test-duration">354</td>
           </tr>
           <tr class="show General_tests success">
               <td class="test-id">2</td>
               <td class="test-title">General tests server should have a non-null start time
                   
               </td>
-              <td class="test-duration">64</td>
+              <td class="test-duration">85</td>
           </tr>
           <tr class="show users_module GET_/users success">
               <td class="test-id">3</td>
               <td class="test-title">users module GET /users users list should return a JSON list of all users in system
                   
               </td>
-              <td class="test-duration">37</td>
+              <td class="test-duration">71</td>
           </tr>
           <tr class="show users_module GET_/users success">
               <td class="test-id">4</td>
+              <td class="test-title">users module GET /users users list should ignire any request body payload sent with the request
+                  
+              </td>
+              <td class="test-duration">29</td>
+          </tr>
+          <tr class="show users_module GET_/users success">
+              <td class="test-id">5</td>
               <td class="test-title">users module GET /users users list should return 500 internal server error if there is a problem with the mysql query or network transmission
                   
               </td>
-              <td class="test-duration">16</td>
+              <td class="test-duration">23</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">6</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return JSON formatted details of a specified user with a status code of 200
+                  
+              </td>
+              <td class="test-duration">22</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">7</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return 400 if letters are used in the userID param
+                  
+              </td>
+              <td class="test-duration">24</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">8</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return 400 if 0 is used as the userID param
+                  
+              </td>
+              <td class="test-duration">13</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">9</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return 400 if too large a number is used as the userID param
+                  
+              </td>
+              <td class="test-duration">14</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">10</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return 404 if the specified userID cannot be found
+                  
+              </td>
+              <td class="test-duration">22</td>
+          </tr>
+          <tr class="show users_module GET_/users/{userID} success">
+              <td class="test-id">11</td>
+              <td class="test-title">users module GET /users/{userID} user detail should return 500 if there is a problem with the mysql query or network transmission
+                  
+              </td>
+              <td class="test-duration">18</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">12</td>
+              <td class="test-title">users module POST /users create user should return 201 with link to new user
+                  
+              </td>
+              <td class="test-duration">127</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">13</td>
+              <td class="test-title">users module POST /users create user should return 400 when login is not provided in the payload on creation
+                  
+              </td>
+              <td class="test-duration">15</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">14</td>
+              <td class="test-title">users module POST /users create user should return 400 when email is not provided in the payload on creation
+                  
+              </td>
+              <td class="test-duration">15</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">15</td>
+              <td class="test-title">users module POST /users create user should return 400 when email is not valid in the payload on creation
+                  
+              </td>
+              <td class="test-duration">25</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">16</td>
+              <td class="test-title">users module POST /users create user should return 400 when hash is not provided in the payload on creation
+                  
+              </td>
+              <td class="test-duration">27</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">17</td>
+              <td class="test-title">users module POST /users create user should return 400 when hash is not valid in the payload on creation
+                  
+              </td>
+              <td class="test-duration">23</td>
+          </tr>
+          <tr class="show users_module POST_/users success">
+              <td class="test-id">18</td>
+              <td class="test-title">users module POST /users create user should return 500 if there is a problem with the mysql query or network transmission
+                  
+              </td>
+              <td class="test-duration">73</td>
+          </tr>
+          <tr class="show users_module UsersUtils success">
+              <td class="test-id">19</td>
+              <td class="test-title">users module UsersUtils .generateHash(&lt;text&gt;) should return a salt (32 characters) and hash (128 characters) seperated by a colen (:)
+                  
+              </td>
+              <td class="test-duration">56</td>
+          </tr>
+          <tr class="show users_module UsersUtils success">
+              <td class="test-id">20</td>
+              <td class="test-title">users module UsersUtils .generateHash(&lt;text&gt;) should reject if there is a problem generating the hash
+                  
+              </td>
+              <td class="test-duration">37</td>
+          </tr>
+          <tr class="show users_module UsersUtils success">
+              <td class="test-id">21</td>
+              <td class="test-title">users module UsersUtils .verifyHash(&lt;text&gt;, &lt;hash&gt;) should return true when the provided text generates the provided hash given the salt attached to the hash
+                  
+              </td>
+              <td class="test-duration">112</td>
+          </tr>
+          <tr class="show users_module UsersUtils success">
+              <td class="test-id">22</td>
+              <td class="test-title">users module UsersUtils .verifyHash(&lt;text&gt;, &lt;hash&gt;) should return false when the provided text does not generate the provided hash given the salt attached to the hash
+                  
+              </td>
+              <td class="test-duration">113</td>
+          </tr>
+          <tr class="show users_module UsersUtils success">
+              <td class="test-id">23</td>
+              <td class="test-title">users module UsersUtils .verifyHash(&lt;text&gt;) should reject if there is a problem generating the hash
+                  
+              </td>
+              <td class="test-duration">71</td>
           </tr>
           </tbody>
       </table>
@@ -617,10 +760,10 @@
     </div>    <div id="coverage">
         <h1>Code Coverage Report</h1>
         <div class="stats high">
-            <div class="percentage">100%</div>
-            <div class="sloc">170</div>
-            <div class="hits">170</div>
-            <div class="misses">0</div>
+            <div class="percentage">99.67%</div>
+            <div class="sloc">300</div>
+            <div class="hits">299</div>
+            <div class="misses">1</div>
         </div>
         <div id="filters">
           <input type="checkbox" checked="" onchange="filter(this)" value="generated" id="show-generated">
@@ -630,10 +773,10 @@
             <div class="file ">
                 <h2 id="handlers.js">handlers.js </h2>
                 <div class="stats high">
-                    <div class="percentage">100%</div>
-                    <div class="sloc">21</div>
-                    <div class="hits">21</div>
-                    <div class="misses">0</div>
+                    <div class="percentage">98.39%</div>
+                    <div class="sloc">62</div>
+                    <div class="hits">61</div>
+                    <div class="misses">1</div>
                 </div>
                 <table>
                     <thead>
@@ -673,119 +816,527 @@
                         </tr>            <tr id="handlers.js__5" class="hit">
                           <td class="line" data-tooltip>5</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const UserUtils &#x3D; require(&#x27;./users.js&#x27;);</td>
                           
                         </tr>            <tr id="handlers.js__6" class="hit">
                           <td class="line" data-tooltip>6</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">exports.baseRoute &#x3D; async function baseRoute(request, h) {</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
                           
                         </tr>            <tr id="handlers.js__7" class="hit">
                           <td class="line" data-tooltip>7</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">  return h.response(&#x27;Test base route&#x27;).code(200);</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.baseRoute &#x3D; async function baseRoute(request, h) {</td>
                           
                         </tr>            <tr id="handlers.js__8" class="hit">
                           <td class="line" data-tooltip>8</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">};</td>
+                          <td class="source">  </td>
                           
                         </tr>            <tr id="handlers.js__9" class="hit">
                           <td class="line" data-tooltip>9</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source"></td>
+                          <td class="source">  return h.response(&#x27;Test base route&#x27;).code(200);</td>
                           
                         </tr>            <tr id="handlers.js__10" class="hit">
                           <td class="line" data-tooltip>10</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">exports.getUsersList &#x3D; async function getUsersList(request, h) {</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">};</td>
                           
                         </tr>            <tr id="handlers.js__11" class="hit">
                           <td class="line" data-tooltip>11</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  return request.pool.query(SQL.getUsersList).then((results, fields) &#x3D;&gt; {</td>
+                          <td class="source"></td>
                           
                         </tr>            <tr id="handlers.js__12" class="hit">
                           <td class="line" data-tooltip>12</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    let users &#x3D; [];</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.createUser &#x3D; async function createUser(request, h) {</td>
                           
                         </tr>            <tr id="handlers.js__13" class="hit">
                           <td class="line" data-tooltip>13</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">    results.forEach((u) &#x3D;&gt; {</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  </td>
                           
                         </tr>            <tr id="handlers.js__14" class="hit">
                           <td class="line" data-tooltip>14</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      users.push({</td>
+                          <td class="source">  return UserUtils.generateHash(request.payload.hash).then((newHash) &#x3D;&gt; {</td>
                           
                         </tr>            <tr id="handlers.js__15" class="hit">
                           <td class="line" data-tooltip>15</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        login: u.login,</td>
+                          <td class="source">  </td>
                           
                         </tr>            <tr id="handlers.js__16" class="hit">
                           <td class="line" data-tooltip>16</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        email: u.email,</td>
+                          <td class="source">    return request.pool.query(SQL.createUser, [request.payload.login, request.payload.email, newHash]).then((results, fields) &#x3D;&gt; {</td>
                           
                         </tr>            <tr id="handlers.js__17" class="hit">
                           <td class="line" data-tooltip>17</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        name: u.name</td>
+                          <td class="source"></td>
                           
                         </tr>            <tr id="handlers.js__18" class="hit">
                           <td class="line" data-tooltip>18</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      });</td>
+                          <td class="source">      return h.response(JSON.stringify({</td>
                           
                         </tr>            <tr id="handlers.js__19" class="hit">
                           <td class="line" data-tooltip>19</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    });</td>
+                          <td class="source">        status: &#x27;created&#x27;,</td>
                           
                         </tr>            <tr id="handlers.js__20" class="hit">
                           <td class="line" data-tooltip>20</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">    return h.response(users).code(200);</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        url: request.aka(&#x27;getUserDetails&#x27;, {</td>
                           
                         </tr>            <tr id="handlers.js__21" class="hit">
                           <td class="line" data-tooltip>21</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  }).catch((err) &#x3D;&gt; {</td>
+                          <td class="source">          params: { userID: results.insertId }</td>
                           
                         </tr>            <tr id="handlers.js__22" class="hit">
                           <td class="line" data-tooltip>22</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    return h.response(err.toString()).code(500);</td>
+                          <td class="source">        }).toString()</td>
                           
                         </tr>            <tr id="handlers.js__23" class="hit">
                           <td class="line" data-tooltip>23</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  });</td>
+                          <td class="source">      })).code(201);</td>
                           
                         </tr>            <tr id="handlers.js__24" class="hit">
                           <td class="line" data-tooltip>24</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    }).catch((err) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__25" class="hit">
+                          <td class="line" data-tooltip>25</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      return h.response(err.toString()).code(500);</td>
+                          
+                        </tr>            <tr id="handlers.js__26" class="hit">
+                          <td class="line" data-tooltip>26</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    });</td>
+                          
+                        </tr>            <tr id="handlers.js__27" class="hit">
+                          <td class="line" data-tooltip>27</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  }).catch((err) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__28" class="chunks">
+                          <td class="line" data-tooltip>28</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"><div>    </div><div class="miss never" data-tooltip>return h.response(err.toString()).code(500);</div></td>
+                          
+                        </tr>            <tr id="handlers.js__29" class="hit">
+                          <td class="line" data-tooltip>29</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  });</td>
+                          
+                        </tr>            <tr id="handlers.js__30" class="hit">
+                          <td class="line" data-tooltip>30</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">};</td>
+                          
+                        </tr>            <tr id="handlers.js__31" class="hit">
+                          <td class="line" data-tooltip>31</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="handlers.js__32" class="hit">
+                          <td class="line" data-tooltip>32</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.getUserDetails &#x3D; async function getUserDetails(request, h) {</td>
+                          
+                        </tr>            <tr id="handlers.js__33" class="hit">
+                          <td class="line" data-tooltip>33</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="handlers.js__34" class="hit">
+                          <td class="line" data-tooltip>34</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  let exists &#x3D; null;</td>
+                          
+                        </tr>            <tr id="handlers.js__35" class="hit">
+                          <td class="line" data-tooltip>35</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  </td>
+                          
+                        </tr>            <tr id="handlers.js__36" class="hit">
+                          <td class="line" data-tooltip>36</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">  await request.pool.query(SQL.checkForUser, [request.params.userID]).then((results, fields) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__37" class="hit">
+                          <td class="line" data-tooltip>37</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="handlers.js__38" class="hit">
+                          <td class="line" data-tooltip>38</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    exists &#x3D; results[0].exists;</td>
+                          
+                        </tr>            <tr id="handlers.js__39" class="hit">
+                          <td class="line" data-tooltip>39</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  }).catch((err) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__40" class="hit">
+                          <td class="line" data-tooltip>40</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="handlers.js__41" class="hit">
+                          <td class="line" data-tooltip>41</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    return h.response(err.toString()).code(500);</td>
+                          
+                        </tr>            <tr id="handlers.js__42" class="hit">
+                          <td class="line" data-tooltip>42</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  });</td>
+                          
+                        </tr>            <tr id="handlers.js__43" class="hit">
+                          <td class="line" data-tooltip>43</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  </td>
+                          
+                        </tr>            <tr id="handlers.js__44" class="hit">
+                          <td class="line" data-tooltip>44</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">  if (exists &#x3D;&#x3D;&#x3D; 1) {</td>
+                          
+                        </tr>            <tr id="handlers.js__45" class="hit">
+                          <td class="line" data-tooltip>45</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">    return request.pool.query(SQL.getUserDetails, [request.params.userID]).then((results, fields) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__46" class="hit">
+                          <td class="line" data-tooltip>46</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      </td>
+                          
+                        </tr>            <tr id="handlers.js__47" class="hit">
+                          <td class="line" data-tooltip>47</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      return h.response({</td>
+                          
+                        </tr>            <tr id="handlers.js__48" class="hit">
+                          <td class="line" data-tooltip>48</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        </td>
+                          
+                        </tr>            <tr id="handlers.js__49" class="hit">
+                          <td class="line" data-tooltip>49</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        id: results[0].id,</td>
+                          
+                        </tr>            <tr id="handlers.js__50" class="hit">
+                          <td class="line" data-tooltip>50</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        login: results[0].login,</td>
+                          
+                        </tr>            <tr id="handlers.js__51" class="hit">
+                          <td class="line" data-tooltip>51</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        email: results[0].email,</td>
+                          
+                        </tr>            <tr id="handlers.js__52" class="hit">
+                          <td class="line" data-tooltip>52</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        employee: &#x27;url will go here&#x27;</td>
+                          
+                        </tr>            <tr id="handlers.js__53" class="hit">
+                          <td class="line" data-tooltip>53</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }).code(200);</td>
+                          
+                        </tr>            <tr id="handlers.js__54" class="hit">
+                          <td class="line" data-tooltip>54</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    }).catch((err) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__55" class="hit">
+                          <td class="line" data-tooltip>55</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // This statement is hard to test because the test case in</td>
+                          
+                        </tr>            <tr id="handlers.js__56" class="hit">
+                          <td class="line" data-tooltip>56</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // which you make the mysql pool throw and error is caught</td>
+                          
+                        </tr>            <tr id="handlers.js__57" class="hit">
+                          <td class="line" data-tooltip>57</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // and handled in the initial test for existance, but I do</td>
+                          
+                        </tr>            <tr id="handlers.js__58" class="hit">
+                          <td class="line" data-tooltip>58</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // not want to remove this handler because in the real world</td>
+                          
+                        </tr>            <tr id="handlers.js__59" class="hit">
+                          <td class="line" data-tooltip>59</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // it is very possible to have the first test work, but then</td>
+                          
+                        </tr>            <tr id="handlers.js__60" class="hit">
+                          <td class="line" data-tooltip>60</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // the conneciton timeout or the server go offline before this</td>
+                          
+                        </tr>            <tr id="handlers.js__61" class="hit">
+                          <td class="line" data-tooltip>61</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      // query hits.</td>
+                          
+                        </tr>            <tr id="handlers.js__62" class="hit">
+                          <td class="line" data-tooltip>62</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      /* $lab:coverage:off$ */</td>
+                          
+                        </tr>            <tr id="handlers.js__63" class="hit">
+                          <td class="line" data-tooltip>63</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      return h.response(err.toString()).code(500);</td>
+                          
+                        </tr>            <tr id="handlers.js__64" class="hit">
+                          <td class="line" data-tooltip>64</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      /* $lab:coverage:on$ */</td>
+                          
+                        </tr>            <tr id="handlers.js__65" class="hit">
+                          <td class="line" data-tooltip>65</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    });</td>
+                          
+                        </tr>            <tr id="handlers.js__66" class="hit">
+                          <td class="line" data-tooltip>66</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">  } else if (exists &#x3D;&#x3D;&#x3D; 0) {</td>
+                          
+                        </tr>            <tr id="handlers.js__67" class="hit">
+                          <td class="line" data-tooltip>67</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">    return h.response(&#x60;userID of ${request.params.userID} not found&#x60;).code(404);</td>
+                          
+                        </tr>            <tr id="handlers.js__68" class="hit">
+                          <td class="line" data-tooltip>68</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  } else {</td>
+                          
+                        </tr>            <tr id="handlers.js__69" class="hit">
+                          <td class="line" data-tooltip>69</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">    return h.response(&#x27;internal server error&#x27;).code(500);</td>
+                          
+                        </tr>            <tr id="handlers.js__70" class="hit">
+                          <td class="line" data-tooltip>70</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  }</td>
+                          
+                        </tr>            <tr id="handlers.js__71" class="hit">
+                          <td class="line" data-tooltip>71</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">};</td>
+                          
+                        </tr>            <tr id="handlers.js__72" class="hit">
+                          <td class="line" data-tooltip>72</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="handlers.js__73" class="hit">
+                          <td class="line" data-tooltip>73</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.getUsersList &#x3D; async function getUsersList(request, h) {</td>
+                          
+                        </tr>            <tr id="handlers.js__74" class="hit">
+                          <td class="line" data-tooltip>74</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  </td>
+                          
+                        </tr>            <tr id="handlers.js__75" class="hit">
+                          <td class="line" data-tooltip>75</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  return request.pool.query(SQL.getUsersList).then((results, fields) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__76" class="hit">
+                          <td class="line" data-tooltip>76</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="handlers.js__77" class="hit">
+                          <td class="line" data-tooltip>77</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    let users &#x3D; [];</td>
+                          
+                        </tr>            <tr id="handlers.js__78" class="hit">
+                          <td class="line" data-tooltip>78</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">    results.forEach((u) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__79" class="hit">
+                          <td class="line" data-tooltip>79</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      </td>
+                          
+                        </tr>            <tr id="handlers.js__80" class="hit">
+                          <td class="line" data-tooltip>80</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      users.push({</td>
+                          
+                        </tr>            <tr id="handlers.js__81" class="hit">
+                          <td class="line" data-tooltip>81</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        login: u.login,</td>
+                          
+                        </tr>            <tr id="handlers.js__82" class="hit">
+                          <td class="line" data-tooltip>82</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        email: u.email,</td>
+                          
+                        </tr>            <tr id="handlers.js__83" class="hit">
+                          <td class="line" data-tooltip>83</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        name: u.name</td>
+                          
+                        </tr>            <tr id="handlers.js__84" class="hit">
+                          <td class="line" data-tooltip>84</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      });</td>
+                          
+                        </tr>            <tr id="handlers.js__85" class="hit">
+                          <td class="line" data-tooltip>85</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    });</td>
+                          
+                        </tr>            <tr id="handlers.js__86" class="hit">
+                          <td class="line" data-tooltip>86</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="handlers.js__87" class="hit">
+                          <td class="line" data-tooltip>87</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">    return h.response(users).code(200);</td>
+                          
+                        </tr>            <tr id="handlers.js__88" class="hit">
+                          <td class="line" data-tooltip>88</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  }).catch((err) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="handlers.js__89" class="hit">
+                          <td class="line" data-tooltip>89</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="handlers.js__90" class="hit">
+                          <td class="line" data-tooltip>90</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    return h.response(err.toString()).code(500);</td>
+                          
+                        </tr>            <tr id="handlers.js__91" class="hit">
+                          <td class="line" data-tooltip>91</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  });</td>
+                          
+                        </tr>            <tr id="handlers.js__92" class="hit">
+                          <td class="line" data-tooltip>92</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">};</td>
@@ -797,8 +1348,8 @@
                 <h2 id="mysql.js">mysql.js </h2>
                 <div class="stats high">
                     <div class="percentage">100%</div>
-                    <div class="sloc">8</div>
-                    <div class="hits">8</div>
+                    <div class="sloc">36</div>
+                    <div class="hits">36</div>
                     <div class="misses">0</div>
                 </div>
                 <table>
@@ -828,40 +1379,238 @@
                           <td class="line" data-tooltip>3</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip>1</td>
-                          <td class="source">exports.getUsersList &#x3D; &#x60;</td>
+                          <td class="source">exports.checkForUser &#x3D; &#x60;</td>
                           
                         </tr>            <tr id="mysql.js__4" class="hit">
                           <td class="line" data-tooltip>4</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">SELECT users.user_login AS &#x27;login&#x27;</td>
+                          <td class="source">SELECT EXISTS (</td>
                           
                         </tr>            <tr id="mysql.js__5" class="hit">
                           <td class="line" data-tooltip>5</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">	, users.user_email AS &#x27;email&#x27;</td>
+                          <td class="source">	SELECT users.user_id</td>
                           
                         </tr>            <tr id="mysql.js__6" class="hit">
                           <td class="line" data-tooltip>6</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">	, CONCAT(employees.emp_fname, &#x27; &#x27;, employees.emp_lname) AS &#x27;name&#x27;</td>
+                          <td class="source">	FROM users</td>
                           
                         </tr>            <tr id="mysql.js__7" class="hit">
                           <td class="line" data-tooltip>7</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">	FROM users</td>
+                          <td class="source">	WHERE users.user_id &#x3D; ?</td>
                           
                         </tr>            <tr id="mysql.js__8" class="hit">
                           <td class="line" data-tooltip>8</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">	LEFT JOIN employees ON (users.emp_id &#x3D; employees.emp_id)</td>
+                          <td class="source">) AS &#x27;exists&#x27;;</td>
                           
                         </tr>            <tr id="mysql.js__9" class="hit">
                           <td class="line" data-tooltip>9</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x60;;</td>
+                          
+                        </tr>            <tr id="mysql.js__10" class="hit">
+                          <td class="line" data-tooltip>10</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="mysql.js__11" class="hit">
+                          <td class="line" data-tooltip>11</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.createUser &#x3D; &#x60;</td>
+                          
+                        </tr>            <tr id="mysql.js__12" class="hit">
+                          <td class="line" data-tooltip>12</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">INSERT INTO users (user_login, user_email, user_hash)</td>
+                          
+                        </tr>            <tr id="mysql.js__13" class="hit">
+                          <td class="line" data-tooltip>13</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	VALUES (?, ?, ?);</td>
+                          
+                        </tr>            <tr id="mysql.js__14" class="hit">
+                          <td class="line" data-tooltip>14</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x60;;</td>
+                          
+                        </tr>            <tr id="mysql.js__15" class="hit">
+                          <td class="line" data-tooltip>15</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="mysql.js__16" class="hit">
+                          <td class="line" data-tooltip>16</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.deleteUser &#x3D; &#x60;</td>
+                          
+                        </tr>            <tr id="mysql.js__17" class="hit">
+                          <td class="line" data-tooltip>17</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">DELETE FROM users</td>
+                          
+                        </tr>            <tr id="mysql.js__18" class="hit">
+                          <td class="line" data-tooltip>18</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	WHERE users.user_id &#x3D; ?;</td>
+                          
+                        </tr>            <tr id="mysql.js__19" class="hit">
+                          <td class="line" data-tooltip>19</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x60;;</td>
+                          
+                        </tr>            <tr id="mysql.js__20" class="hit">
+                          <td class="line" data-tooltip>20</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="mysql.js__21" class="hit">
+                          <td class="line" data-tooltip>21</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.getUserDetails &#x3D; &#x60;</td>
+                          
+                        </tr>            <tr id="mysql.js__22" class="hit">
+                          <td class="line" data-tooltip>22</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">SELECT users.user_id AS &#x27;id&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__23" class="hit">
+                          <td class="line" data-tooltip>23</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	, users.user_login AS &#x27;login&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__24" class="hit">
+                          <td class="line" data-tooltip>24</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	, users.user_email AS &#x27;email&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__25" class="hit">
+                          <td class="line" data-tooltip>25</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	, users.emp_id AS &#x27;employee&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__26" class="hit">
+                          <td class="line" data-tooltip>26</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	FROM users</td>
+                          
+                        </tr>            <tr id="mysql.js__27" class="hit">
+                          <td class="line" data-tooltip>27</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	WHERE users.user_id &#x3D; ?;</td>
+                          
+                        </tr>            <tr id="mysql.js__28" class="hit">
+                          <td class="line" data-tooltip>28</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x60;;</td>
+                          
+                        </tr>            <tr id="mysql.js__29" class="hit">
+                          <td class="line" data-tooltip>29</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="mysql.js__30" class="hit">
+                          <td class="line" data-tooltip>30</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.getUserHash &#x3D; &#x60;</td>
+                          
+                        </tr>            <tr id="mysql.js__31" class="hit">
+                          <td class="line" data-tooltip>31</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">SELECT users.user_hash</td>
+                          
+                        </tr>            <tr id="mysql.js__32" class="hit">
+                          <td class="line" data-tooltip>32</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	FROM users</td>
+                          
+                        </tr>            <tr id="mysql.js__33" class="hit">
+                          <td class="line" data-tooltip>33</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	WHERE users.user_id &#x3D; ?;</td>
+                          
+                        </tr>            <tr id="mysql.js__34" class="hit">
+                          <td class="line" data-tooltip>34</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x60;;</td>
+                          
+                        </tr>            <tr id="mysql.js__35" class="hit">
+                          <td class="line" data-tooltip>35</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="mysql.js__36" class="hit">
+                          <td class="line" data-tooltip>36</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">exports.getUsersList &#x3D; &#x60;</td>
+                          
+                        </tr>            <tr id="mysql.js__37" class="hit">
+                          <td class="line" data-tooltip>37</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">SELECT users.user_login AS &#x27;login&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__38" class="hit">
+                          <td class="line" data-tooltip>38</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	, users.user_email AS &#x27;email&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__39" class="hit">
+                          <td class="line" data-tooltip>39</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	, CONCAT(employees.emp_fname, &#x27; &#x27;, employees.emp_lname) AS &#x27;name&#x27;</td>
+                          
+                        </tr>            <tr id="mysql.js__40" class="hit">
+                          <td class="line" data-tooltip>40</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	FROM users</td>
+                          
+                        </tr>            <tr id="mysql.js__41" class="hit">
+                          <td class="line" data-tooltip>41</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">	LEFT JOIN employees ON (users.emp_id &#x3D; employees.emp_id);</td>
+                          
+                        </tr>            <tr id="mysql.js__42" class="hit">
+                          <td class="line" data-tooltip>42</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">&#x60;;</td>
@@ -873,8 +1622,8 @@
                 <h2 id="routes.js">routes.js </h2>
                 <div class="stats high">
                     <div class="percentage">100%</div>
-                    <div class="sloc">27</div>
-                    <div class="hits">27</div>
+                    <div class="sloc">62</div>
+                    <div class="hits">62</div>
                     <div class="misses">0</div>
                 </div>
                 <table>
@@ -909,155 +1658,371 @@
                         </tr>            <tr id="routes.js__4" class="hit">
                           <td class="line" data-tooltip>4</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const Joi &#x3D; require(&#x27;@hapi/joi&#x27;);</td>
                           
                         </tr>            <tr id="routes.js__5" class="hit">
                           <td class="line" data-tooltip>5</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>1</td>
-                          <td class="source">module.exports &#x3D; {</td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
                           
                         </tr>            <tr id="routes.js__6" class="hit">
                           <td class="line" data-tooltip>6</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">  register: async (server, options) &#x3D;&gt; {</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const EmailSchema &#x3D; Joi.string().email();</td>
                           
                         </tr>            <tr id="routes.js__7" class="hit">
                           <td class="line" data-tooltip>7</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">    server.route([{</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const HashSchema &#x3D; Joi.string().length(32);</td>
                           
                         </tr>            <tr id="routes.js__8" class="hit">
                           <td class="line" data-tooltip>8</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">      method: &#x27;GET&#x27;,</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const IDSchema &#x3D; Joi.number().min(1).max(9999999999).error(new Error(&#x27;{userID} must be a number between 1 and 10 digits long&#x27;));</td>
                           
                         </tr>            <tr id="routes.js__9" class="hit">
                           <td class="line" data-tooltip>9</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">      path: &#x27;/&#x27;,</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">const StringSchema &#x3D; Joi.string().min(1).max(120).error(new Error(&#x27;string must be a non-empty string less than 120 characters long&#x27;));</td>
                           
                         </tr>            <tr id="routes.js__10" class="hit">
                           <td class="line" data-tooltip>10</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      handler: Handlers.baseRoute,</td>
+                          <td class="source"></td>
                           
                         </tr>            <tr id="routes.js__11" class="hit">
                           <td class="line" data-tooltip>11</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip></td>
-                          <td class="source">      options: {</td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">module.exports &#x3D; {</td>
                           
                         </tr>            <tr id="routes.js__12" class="hit">
                           <td class="line" data-tooltip>12</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        description: &#x27;Base test route&#x27;,</td>
+                          <td class="source">  register: async (server, options) &#x3D;&gt; {</td>
                           
                         </tr>            <tr id="routes.js__13" class="hit">
                           <td class="line" data-tooltip>13</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        id: &#x27;baseRoute&#x27;,</td>
+                          <td class="source">    server.route([{</td>
                           
                         </tr>            <tr id="routes.js__14" class="hit">
                           <td class="line" data-tooltip>14</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        tags: [&#x27;test&#x27;]</td>
+                          <td class="source">      method: &#x27;GET&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__15" class="hit">
                           <td class="line" data-tooltip>15</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      }</td>
+                          <td class="source">      path: &#x27;/&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__16" class="hit">
                           <td class="line" data-tooltip>16</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }, {</td>
+                          <td class="source">      handler: Handlers.baseRoute,</td>
                           
                         </tr>            <tr id="routes.js__17" class="hit">
                           <td class="line" data-tooltip>17</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      method: &#x27;GET&#x27;,</td>
+                          <td class="source">      options: {</td>
                           
                         </tr>            <tr id="routes.js__18" class="hit">
                           <td class="line" data-tooltip>18</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      path: &#x27;/users&#x27;,</td>
+                          <td class="source">        description: &#x27;Base test route&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__19" class="hit">
                           <td class="line" data-tooltip>19</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      handler: Handlers.getUsersList,</td>
+                          <td class="source">        id: &#x27;baseRoute&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__20" class="hit">
                           <td class="line" data-tooltip>20</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      options: {</td>
+                          <td class="source">        tags: [&#x27;test&#x27;]</td>
                           
                         </tr>            <tr id="routes.js__21" class="hit">
                           <td class="line" data-tooltip>21</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        description: &#x27;Return a list of all users&#x27;,</td>
+                          <td class="source">      }</td>
                           
                         </tr>            <tr id="routes.js__22" class="hit">
                           <td class="line" data-tooltip>22</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        id: &#x27;getUserList&#x27;,</td>
+                          <td class="source">    }, {</td>
                           
                         </tr>            <tr id="routes.js__23" class="hit">
                           <td class="line" data-tooltip>23</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">        tags: [&#x27;get&#x27;, &#x27;users&#x27;]</td>
+                          <td class="source">      method: &#x27;GET&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__24" class="hit">
                           <td class="line" data-tooltip>24</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">      }</td>
+                          <td class="source">      path: &#x27;/users&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__25" class="hit">
                           <td class="line" data-tooltip>25</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">    }]);</td>
+                          <td class="source">      handler: Handlers.getUsersList,</td>
                           
                         </tr>            <tr id="routes.js__26" class="hit">
                           <td class="line" data-tooltip>26</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  },</td>
+                          <td class="source">      options: {</td>
                           
                         </tr>            <tr id="routes.js__27" class="hit">
                           <td class="line" data-tooltip>27</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  name: &#x27;routes&#x27;,</td>
+                          <td class="source">        description: &#x27;Return a list of all users&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__28" class="hit">
                           <td class="line" data-tooltip>28</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
-                          <td class="source">  version: &#x27;1.0.0&#x27;</td>
+                          <td class="source">        id: &#x27;getUserList&#x27;,</td>
                           
                         </tr>            <tr id="routes.js__29" class="hit">
                           <td class="line" data-tooltip>29</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        tags: [&#x27;get&#x27;, &#x27;users&#x27;, &#x27;list&#x27;]</td>
+                          
+                        </tr>            <tr id="routes.js__30" class="hit">
+                          <td class="line" data-tooltip>30</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }</td>
+                          
+                        </tr>            <tr id="routes.js__31" class="hit">
+                          <td class="line" data-tooltip>31</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    }, {</td>
+                          
+                        </tr>            <tr id="routes.js__32" class="hit">
+                          <td class="line" data-tooltip>32</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      method: &#x27;POST&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__33" class="hit">
+                          <td class="line" data-tooltip>33</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      path: &#x27;/users&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__34" class="hit">
+                          <td class="line" data-tooltip>34</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      handler: Handlers.createUser,</td>
+                          
+                        </tr>            <tr id="routes.js__35" class="hit">
+                          <td class="line" data-tooltip>35</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      options: {</td>
+                          
+                        </tr>            <tr id="routes.js__36" class="hit">
+                          <td class="line" data-tooltip>36</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        description: &#x27;Create a new user&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__37" class="hit">
+                          <td class="line" data-tooltip>37</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        id: &#x27;createUser&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__38" class="hit">
+                          <td class="line" data-tooltip>38</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        tags: [&#x27;post&#x27;, &#x27;users&#x27;, &#x27;create&#x27;],</td>
+                          
+                        </tr>            <tr id="routes.js__39" class="hit">
+                          <td class="line" data-tooltip>39</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        validate: {</td>
+                          
+                        </tr>            <tr id="routes.js__40" class="hit">
+                          <td class="line" data-tooltip>40</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          payload: Joi.object({</td>
+                          
+                        </tr>            <tr id="routes.js__41" class="hit">
+                          <td class="line" data-tooltip>41</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            login: StringSchema.required(),</td>
+                          
+                        </tr>            <tr id="routes.js__42" class="hit">
+                          <td class="line" data-tooltip>42</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            email: EmailSchema.required(),</td>
+                          
+                        </tr>            <tr id="routes.js__43" class="hit">
+                          <td class="line" data-tooltip>43</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            hash: HashSchema.required()</td>
+                          
+                        </tr>            <tr id="routes.js__44" class="hit">
+                          <td class="line" data-tooltip>44</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          })</td>
+                          
+                        </tr>            <tr id="routes.js__45" class="hit">
+                          <td class="line" data-tooltip>45</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          
+                        </tr>            <tr id="routes.js__46" class="hit">
+                          <td class="line" data-tooltip>46</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }</td>
+                          
+                        </tr>            <tr id="routes.js__47" class="hit">
+                          <td class="line" data-tooltip>47</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    }, {</td>
+                          
+                        </tr>            <tr id="routes.js__48" class="hit">
+                          <td class="line" data-tooltip>48</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      method: &#x27;GET&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__49" class="hit">
+                          <td class="line" data-tooltip>49</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      path: &#x27;/users/{userID}&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__50" class="hit">
+                          <td class="line" data-tooltip>50</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      handler: Handlers.getUserDetails,</td>
+                          
+                        </tr>            <tr id="routes.js__51" class="hit">
+                          <td class="line" data-tooltip>51</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      options: {</td>
+                          
+                        </tr>            <tr id="routes.js__52" class="hit">
+                          <td class="line" data-tooltip>52</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        description: &#x27;Return details of user by id&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__53" class="hit">
+                          <td class="line" data-tooltip>53</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        id: &#x27;getUserDetails&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__54" class="hit">
+                          <td class="line" data-tooltip>54</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        tags: [&#x27;get&#x27;, &#x27;users&#x27;, &#x27;details&#x27;],</td>
+                          
+                        </tr>            <tr id="routes.js__55" class="hit">
+                          <td class="line" data-tooltip>55</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        validate: {</td>
+                          
+                        </tr>            <tr id="routes.js__56" class="hit">
+                          <td class="line" data-tooltip>56</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          params: Joi.object({</td>
+                          
+                        </tr>            <tr id="routes.js__57" class="hit">
+                          <td class="line" data-tooltip>57</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">            userID: IDSchema</td>
+                          
+                        </tr>            <tr id="routes.js__58" class="hit">
+                          <td class="line" data-tooltip>58</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">          })</td>
+                          
+                        </tr>            <tr id="routes.js__59" class="hit">
+                          <td class="line" data-tooltip>59</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">        }</td>
+                          
+                        </tr>            <tr id="routes.js__60" class="hit">
+                          <td class="line" data-tooltip>60</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }</td>
+                          
+                        </tr>            <tr id="routes.js__61" class="hit">
+                          <td class="line" data-tooltip>61</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    }]);</td>
+                          
+                        </tr>            <tr id="routes.js__62" class="hit">
+                          <td class="line" data-tooltip>62</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  },</td>
+                          
+                        </tr>            <tr id="routes.js__63" class="hit">
+                          <td class="line" data-tooltip>63</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  name: &#x27;routes&#x27;,</td>
+                          
+                        </tr>            <tr id="routes.js__64" class="hit">
+                          <td class="line" data-tooltip>64</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  version: &#x27;1.0.0&#x27;</td>
+                          
+                        </tr>            <tr id="routes.js__65" class="hit">
+                          <td class="line" data-tooltip>65</td>
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">};</td>
@@ -1459,7 +2424,7 @@
                         </tr>            <tr id="server.js__63" class="hit">
                           <td class="line" data-tooltip>63</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>4</td>
+                          <td class="hits" data-tooltip>18</td>
                           <td class="source">  let Pool;</td>
                           
                         </tr>            <tr id="server.js__64" class="hit">
@@ -1561,7 +2526,7 @@
                         </tr>            <tr id="server.js__80" class="hit">
                           <td class="line" data-tooltip>80</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>4</td>
+                          <td class="hits" data-tooltip>18</td>
                           <td class="source">  Server.decorate(&#x27;request&#x27;, &#x27;pool&#x27;, Pool);</td>
                           
                         </tr>            <tr id="server.js__81" class="hit">
@@ -1573,7 +2538,7 @@
                         </tr>            <tr id="server.js__82" class="hit">
                           <td class="line" data-tooltip>82</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>4</td>
+                          <td class="hits" data-tooltip>18</td>
                           <td class="source">  if (opts.start) {</td>
                           
                         </tr>            <tr id="server.js__83" class="hit">
@@ -1717,13 +2682,13 @@
                         </tr>            <tr id="server.js__106" class="hit">
                           <td class="line" data-tooltip>106</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>4</td>
+                          <td class="hits" data-tooltip>18</td>
                           <td class="source">  if (opts.initialize) {</td>
                           
                         </tr>            <tr id="server.js__107" class="hit">
                           <td class="line" data-tooltip>107</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
+                          <td class="hits" data-tooltip>17</td>
                           <td class="source">    await Server.register([{</td>
                           
                         </tr>            <tr id="server.js__108" class="hit">
@@ -1825,7 +2790,7 @@
                         </tr>            <tr id="server.js__124" class="hit">
                           <td class="line" data-tooltip>124</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>3</td>
+                          <td class="hits" data-tooltip>17</td>
                           <td class="source">    await Server.initialize();</td>
                           
                         </tr>            <tr id="server.js__125" class="hit">
@@ -1843,7 +2808,7 @@
                         </tr>            <tr id="server.js__127" class="hit">
                           <td class="line" data-tooltip>127</td>
                           <td class="lint empty"></td>
-                          <td class="hits" data-tooltip>4</td>
+                          <td class="hits" data-tooltip>18</td>
                           <td class="source">  return Server;</td>
                           
                         </tr>            <tr id="server.js__128" class="hit">
@@ -1893,6 +2858,238 @@
                           <td class="lint empty"></td>
                           <td class="hits" data-tooltip></td>
                           <td class="source">/* $lab:coverage:on$ */</td>
+                          
+                        </tr>        </tbody>
+                </table>
+            </div>
+            <div class="file ">
+                <h2 id="users.js">users.js </h2>
+                <div class="stats high">
+                    <div class="percentage">100%</div>
+                    <div class="sloc">26</div>
+                    <div class="hits">26</div>
+                    <div class="misses">0</div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Line</th>
+                            <th>Lint</th>
+                            <th>Hits</th>
+                            <th>Source</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="users.js__1" class="hit">
+                          <td class="line" data-tooltip>1</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">&#x27;use strict&#x27;;</td>
+                          
+                        </tr>            <tr id="users.js__2" class="hit">
+                          <td class="line" data-tooltip>2</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="users.js__3" class="hit">
+                          <td class="line" data-tooltip>3</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">const Crypto &#x3D; require(&#x27;crypto&#x27;);</td>
+                          
+                        </tr>            <tr id="users.js__4" class="hit">
+                          <td class="line" data-tooltip>4</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="users.js__5" class="hit">
+                          <td class="line" data-tooltip>5</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">exports.generateHash &#x3D; async (text) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__6" class="hit">
+                          <td class="line" data-tooltip>6</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="users.js__7" class="hit">
+                          <td class="line" data-tooltip>7</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  return new Promise((resolve, reject) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__8" class="hit">
+                          <td class="line" data-tooltip>8</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="users.js__9" class="hit">
+                          <td class="line" data-tooltip>9</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    let salt &#x3D; Crypto.randomBytes(16).toString(&#x27;hex&#x27;);</td>
+                          
+                        </tr>            <tr id="users.js__10" class="hit">
+                          <td class="line" data-tooltip>10</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="users.js__11" class="hit">
+                          <td class="line" data-tooltip>11</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>7</td>
+                          <td class="source">    Crypto.scrypt(text, salt, 64, (err, hash) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__12" class="hit">
+                          <td class="line" data-tooltip>12</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      </td>
+                          
+                        </tr>            <tr id="users.js__13" class="hit">
+                          <td class="line" data-tooltip>13</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      if (err) {</td>
+                          
+                        </tr>            <tr id="users.js__14" class="hit">
+                          <td class="line" data-tooltip>14</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">        reject(err);</td>
+                          
+                        </tr>            <tr id="users.js__15" class="hit">
+                          <td class="line" data-tooltip>15</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      } else {</td>
+                          
+                        </tr>            <tr id="users.js__16" class="hit">
+                          <td class="line" data-tooltip>16</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>6</td>
+                          <td class="source">        resolve(&#x60;${salt}:${hash.toString(&#x27;hex&#x27;)}&#x60;);</td>
+                          
+                        </tr>            <tr id="users.js__17" class="hit">
+                          <td class="line" data-tooltip>17</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }</td>
+                          
+                        </tr>            <tr id="users.js__18" class="hit">
+                          <td class="line" data-tooltip>18</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    });</td>
+                          
+                        </tr>            <tr id="users.js__19" class="hit">
+                          <td class="line" data-tooltip>19</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  });</td>
+                          
+                        </tr>            <tr id="users.js__20" class="hit">
+                          <td class="line" data-tooltip>20</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">};</td>
+                          
+                        </tr>            <tr id="users.js__21" class="hit">
+                          <td class="line" data-tooltip>21</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source"></td>
+                          
+                        </tr>            <tr id="users.js__22" class="hit">
+                          <td class="line" data-tooltip>22</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">exports.verifyHash &#x3D; async (text, hash) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__23" class="hit">
+                          <td class="line" data-tooltip>23</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  </td>
+                          
+                        </tr>            <tr id="users.js__24" class="hit">
+                          <td class="line" data-tooltip>24</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  return new Promise((resolve, reject) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__25" class="hit">
+                          <td class="line" data-tooltip>25</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    </td>
+                          
+                        </tr>            <tr id="users.js__26" class="hit">
+                          <td class="line" data-tooltip>26</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    const [salt, key] &#x3D; hash.split(&#x27;:&#x27;);</td>
+                          
+                        </tr>            <tr id="users.js__27" class="hit">
+                          <td class="line" data-tooltip>27</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>3</td>
+                          <td class="source">    Crypto.scrypt(text, salt, 64, (err, hash) &#x3D;&gt; {</td>
+                          
+                        </tr>            <tr id="users.js__28" class="hit">
+                          <td class="line" data-tooltip>28</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      if (err) {</td>
+                          
+                        </tr>            <tr id="users.js__29" class="hit">
+                          <td class="line" data-tooltip>29</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>1</td>
+                          <td class="source">        reject(err);</td>
+                          
+                        </tr>            <tr id="users.js__30" class="hit">
+                          <td class="line" data-tooltip>30</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      } else {</td>
+                          
+                        </tr>            <tr id="users.js__31" class="hit">
+                          <td class="line" data-tooltip>31</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip>2</td>
+                          <td class="source">        resolve(key &#x3D;&#x3D;&#x3D; hash.toString(&#x27;hex&#x27;));</td>
+                          
+                        </tr>            <tr id="users.js__32" class="hit">
+                          <td class="line" data-tooltip>32</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">      }</td>
+                          
+                        </tr>            <tr id="users.js__33" class="hit">
+                          <td class="line" data-tooltip>33</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">    });</td>
+                          
+                        </tr>            <tr id="users.js__34" class="hit">
+                          <td class="line" data-tooltip>34</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">  });</td>
+                          
+                        </tr>            <tr id="users.js__35" class="hit">
+                          <td class="line" data-tooltip>35</td>
+                          <td class="lint empty"></td>
+                          <td class="hits" data-tooltip></td>
+                          <td class="source">};</td>
                           
                         </tr>        </tbody>
                 </table>

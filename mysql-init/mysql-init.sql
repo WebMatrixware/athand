@@ -4,7 +4,7 @@ CREATE TABLE athand.users (
   user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   user_login VARCHAR(120) NOT NULL,
   user_email VARCHAR(120) NOT NULL,
-  user_hash VARCHAR(120) NOT NULL,
+  user_hash VARCHAR(161) NOT NULL,
   emp_id BIGINT
 );
 
@@ -54,6 +54,12 @@ CREATE TABLE athand.transaction_types (
   transaction_type_id BIGINT AUTO_INCREMENT PRIMARY KEY,
   transaction_type_name VARCHAR(40),
   transaction_type_action TINYTEXT
+);
+
+CREATE TABLE athand.sessions (
+  session_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT,
+  session_start DATETIME CURRENT_TIMESTAMP
 );
 
 CREATE TABLE athand.status_types (
